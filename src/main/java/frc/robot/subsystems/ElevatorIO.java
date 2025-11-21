@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import org.littletonrobotics.junction.AutoLog;
+
 /** Add your docs here. */
 public interface ElevatorIO {
     @AutoLog
@@ -17,12 +19,19 @@ public interface ElevatorIO {
         public double rightVelocityMetersPerSecond = 0.0;
 
         //Current Position
-        public double leftPositionMeters = 0.0;            public double rightPositionMeters = 0.0;
+        public double leftPositionMeters = 0.0;            
+        public double rightPositionMeters = 0.0;
     
         //Motor Currents
-        public double leftCurrentAmps = 0.0;
-        public double rightCurrentAmps = 0.0;
+        public double leadCurrentAmps = 0.0;
+        public double followCurrentAmps = 0.0;
+
+        //Temperature
+        public double leadTempCelsius = 0.0;
+        public double followTempCelsius = 0.0;
     }
         public void updateInputs(ElevatorIOInputs inputs);
         public void setPosition(double height);
+        public void setVolts(double lead, double follow);
 }
+
