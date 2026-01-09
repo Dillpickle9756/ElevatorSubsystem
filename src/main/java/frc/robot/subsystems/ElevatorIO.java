@@ -11,16 +11,16 @@ public interface ElevatorIO {
     @AutoLog
     public static class ElevatorIOInputs{
         //Output Voltages
-        public double leftOutputVolts = 0.0;
-        public double rightOutputVolts = 0.0;
+        public double leadOutputVolts = 0.0;
+        public double followOutputVolts = 0.0;
 
         //Current Velocities
-        public double leftVelocityMetersPerSecond = 0.0;
-        public double rightVelocityMetersPerSecond = 0.0;
+        public double leadVelocityMetersPerSecond = 0.0;
+        public double followVelocityMetersPerSecond = 0.0;
 
         //Current Position
-        public double leftPositionMeters = 0.0;            
-        public double rightPositionMeters = 0.0;
+        public double leadPositionMeters = 0.0;            
+        public double followPositionMeters = 0.0;
     
         //Motor Currents
         public double leadCurrentAmps = 0.0;
@@ -32,6 +32,6 @@ public interface ElevatorIO {
     }
         public void updateInputs(ElevatorIOInputs inputs);
         public void setPosition(double height);
-        public void setVolts(double lead, double follow);
+        public void setVolts(double leadVolts);
 }
 

@@ -30,18 +30,12 @@ public class ElevatorSubsystem extends SubsystemBase {
   public ElevatorSubsystem() {
 
   }
-  private void setVolts(double lead, double follow){
-    io.setVolts(lead,follow);
+  private void setVolts(double leadVolts){
+    io.setVolts(leadVolts);
   }
-  public Command setVoltagesCommand(DoubleSupplier left, DoubleSupplier right) {
-    return this.run(() -> this.setVolts(left.getAsDouble(), right.getAsDouble()));
+  public Command setVoltagesCommand(DoubleSupplier lead) {
+    return this.run(() -> this.setVolts(lead.getAsDouble()));
     }
-  public Command setVoltagesArcadeCommand(DoubleSupplier drive, DoubleSupplier steer) {
-    return this.run(() -> {
-      var speeds = DifferentialDrive.arcadeDriveIK(drive.getAsDouble(), steer.getAsDouble(), false);
-      this.setVolts(speeds.left * 12, speeds.right * 12);
-    });
-  }
   private void setPosition(double height){
     io.setPosition(height);
   }
@@ -51,7 +45,7 @@ public class ElevatorSubsystem extends SubsystemBase {
   public Command setPositionArcadeCommand(DoubleSupplier drive, DoubleSupplier steer) {
   return this.run(() -> {
     var speeds = DifferentialDrive.arcadeDriveIK(drive.getAsDouble(), steer.getAsDouble(), false);
-    this.setVolts(speeds.left * 12, speeds.right * 12);
+    this.setVolts(speeds.left * 12);
   });
 }
   
